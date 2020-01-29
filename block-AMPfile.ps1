@@ -1,4 +1,7 @@
 $CredFile   = import-csv 'credentials.csv'
+
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 Function Add-toAMP($AMPFile)
 {
         ## Add to AMP
