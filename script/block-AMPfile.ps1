@@ -1,5 +1,3 @@
-$CredFile   = import-csv 'credentials.csv'
-
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 Function Add-toAMP($AMPFile)
@@ -8,14 +6,12 @@ Function Add-toAMP($AMPFile)
         ## AMP API Docs: https://api-docs.amp.cisco.com/api_resources?api_host=api.amp.cisco.com&api_version=v1
 
         ## Pull credential data from CSV file
-            $AMPClientID = $CredFile | Where-Object -Property Type -eq 'AMPClientID'
-                $AMPClientID = $AMPClientID.data
-            $AMPKey = $CredFile | Where-Object -Property Type -eq 'AMPKey'
-                $AMPKey = $AMPKey.data
+            $AMPClientID = "xxxxxxxxxxxxxx"
+            $AMPKey = "yyyyyyyyyyyyyyyyyyy"
         
         ## Other AMP specific variables
             $day = get-date -f yyyy-MM-dd                               ## Date as 4 digit year, 2 digit month, 2 digit day (for AMP description)
-            $AMPDescription = "TAP via PowerShell"                      ## Note on AMP list entry
+            $AMPDescription = "Added via PowerShell"                    ## Note on AMP list entry
             $AMPcredpair = "$($AMPClientID):$($AMPKey)"                 ## Creating the credential
             $AMPencodedcredentials = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes($AMPcredpair))
             $AMPBody  = @{description = "$AMPDescription $day"}         ## Adding the description to the body
